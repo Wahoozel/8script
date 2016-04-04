@@ -19,3 +19,11 @@
 "*"		end if / else statement
 
 #Examples
+
+#FAQ
+
+## How can I print a newline?
+
+Create a variable with the value 10 and print it as ascii.
+```
+. n : 10 |

@@ -35,7 +35,14 @@ void Parser::parse(std::vector<std::string> tokens) {
 	std::map<std::string, int> variables;
 	std::string selected_variable;
 
+	int skip_tokens = 0;
+
 	for (int i = 0; i < tokens.size(); i++) {
+		if (skip_tokens > 0) {
+			skip_tokens--;
+			continue;
+		}
+
 		// Current token
 		std::string t = tokens[i];
 
@@ -46,6 +53,7 @@ void Parser::parse(std::vector<std::string> tokens) {
 			selected_variable = name;
 
 			Debug::debug_message("Creating and selecting variable " + name);
+			skip_tokens += 1;
 
 		} else if (t == T_SELECT) {
 
@@ -53,6 +61,7 @@ void Parser::parse(std::vector<std::string> tokens) {
 			selected_variable = name;
 
 			Debug::debug_message("Selecting variable " + name);
+			skip_tokens += 1;
 
 		} else if (t == T_SET) {
 			
@@ -60,8 +69,9 @@ void Parser::parse(std::vector<std::string> tokens) {
 			variables[selected_variable] = value; 
 
 			// A bug in MinGW wont let me use std::to_string(),
-			// so I can't be bothered to print what it's changed to
+			// so I can't be bothered printing what it's changed to
 			Debug::debug_message("Changing value of selected");
+			skip_tokens += 1;
 
 		} else if (t == T_OUTPUT) {
 			
@@ -71,6 +81,10 @@ void Parser::parse(std::vector<std::string> tokens) {
 
 		} else if (t == T_OUTPUT_ASCII) {
 			
+			if (variables[selected_variable] == 10) {
+				std::cout << std::endl;
+				continue;
+			}
 			std::cout << static_cast<char>(variables[selected_variable]);
 
 			Debug::debug_message("Writing selected to stdout as char");
