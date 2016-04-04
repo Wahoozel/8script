@@ -5,7 +5,7 @@
 class Debug {
 public:
 	// Is debug mode enabled?
-	static bool DEBUG;
+	static bool DEBUG_ENABLED;
 
 	// Leaves a debug message on stdout
 	static void debug_message(std::string message);

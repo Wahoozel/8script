@@ -1,8 +1,9 @@
 #include <iostream>
 #include "debug.h"
 
-bool Debug::DEBUG = false;
+bool Debug::DEBUG_ENABLED = false;
 
 void Debug::debug_message(std::string message) {
-	std::cout << "DEBUG: " << message << std::endl;
+	if (DEBUG_ENABLED)
+		std::cout << "DEBUG: " << message << std::endl;
 }

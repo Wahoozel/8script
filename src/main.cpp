@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
 		std::string arg = argv[i];
 		if (arg == "-d") {
 			// Enable debug mode
-			Debug::DEBUG = true;
+			Debug::DEBUG_ENABLED = true;
 			Debug::debug_message("Debug mode enabled!");
 		}
 	}
