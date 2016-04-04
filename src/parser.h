@@ -5,12 +5,9 @@
 
 class Parser {
 public:
-	// Reads a file into a string and sends it to tokenize();
+	// Reads a file, token for token and adds it to a string vector.
 	static void read_file(std::string path);
 
-	// Tokenizes the string. (splits each word adds it to a string vector)
-	static void tokenize(std::string file);
-
-	// Iterates through all tokens from tokenize() and does what it's supposed to do.
+	// Iterates through all tokens from read_file() and does what it's supposed to do.
 	static void parse(std::vector<std::string> tokens);
 };
